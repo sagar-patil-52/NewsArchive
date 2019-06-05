@@ -38,8 +38,22 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.titleTableview.estimatedRowHeight = 140
         self.titleTableview.rowHeight = UITableView.automaticDimension
         self.titleTableview.backgroundColor = UIColor.black;
+
+        updateDeviceToken()
+        
     }
 
+    func updateDeviceToken() {
+        let anotherWebServiceHandler = WebServiceHandler.init()
+        anotherWebServiceHandler.fetchDataFromWebServicePost([:], closure:
+            {
+                response in
+                
+                print(response);
+        })
+
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
