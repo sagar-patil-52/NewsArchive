@@ -8,11 +8,36 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+   
+    
+    @IBOutlet weak var titleTableview: UITableView!
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 10
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        // create a new cell if needed or reuse an old one
+        let cell:UITableViewCell = self.titleTableview.dequeueReusableCell(withIdentifier: "TitleCell") as UITableViewCell!
+        
+        // set the text from the data model
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        self.titleTableview.estimatedRowHeight = 140
+        self.titleTableview.rowHeight = UITableView.automaticDimension
+        self.titleTableview.backgroundColor = UIColor.black;
     }
 
     override func didReceiveMemoryWarning() {
