@@ -16,6 +16,9 @@
 		F443D5AE22A7D8D300D1675D /* NewsArchives.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F443D5AC22A7D8D300D1675D /* NewsArchives.xcdatamodeld */; };
 		F443D5B022A7D8D300D1675D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F443D5AF22A7D8D300D1675D /* Assets.xcassets */; };
 		F443D5B322A7D8D300D1675D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F443D5B122A7D8D300D1675D /* LaunchScreen.storyboard */; };
+		F44E600722A8333100B60AD0 /* ApiLinks.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44E600622A8333100B60AD0 /* ApiLinks.swift */; };
+		F44E600A22A8339F00B60AD0 /* Issue.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44E600922A8339F00B60AD0 /* Issue.swift */; };
+		F48EB4D022A830BE0060AD2A /* WebServiceHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48EB4CF22A830BE0060AD2A /* WebServiceHandler.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +35,9 @@
 		F443D5AF22A7D8D300D1675D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F443D5B222A7D8D300D1675D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F443D5B422A7D8D300D1675D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F44E600622A8333100B60AD0 /* ApiLinks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiLinks.swift; sourceTree = "<group>"; };
+		F44E600922A8339F00B60AD0 /* Issue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Issue.swift; sourceTree = "<group>"; };
+		F48EB4CF22A830BE0060AD2A /* WebServiceHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebServiceHandler.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +90,8 @@
 		F443D5A422A7D8D300D1675D /* NewsArchives */ = {
 			isa = PBXGroup;
 			children = (
+				F44E600822A8336600B60AD0 /* Models */,
+				F48EB4CE22A830090060AD2A /* Networking */,
 				F443D5A522A7D8D300D1675D /* AppDelegate.swift */,
 				F443D5A722A7D8D300D1675D /* ViewController.swift */,
 				F443D5A922A7D8D300D1675D /* Main.storyboard */,
@@ -95,6 +103,23 @@
 				C12D702A22A848E000A8A8CC /* SearchViewController.swift */,
 			);
 			path = NewsArchives;
+			sourceTree = "<group>";
+		};
+		F44E600822A8336600B60AD0 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				F44E600922A8339F00B60AD0 /* Issue.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		F48EB4CE22A830090060AD2A /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				F48EB4CF22A830BE0060AD2A /* WebServiceHandler.swift */,
+				F44E600622A8333100B60AD0 /* ApiLinks.swift */,
+			);
+			path = Networking;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -172,15 +197,11 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-NewsArchives/Pods-NewsArchives-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 			);
@@ -194,15 +215,11 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
 				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
 				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-NewsArchives-checkManifestLockResult.txt",
 			);
@@ -220,9 +237,12 @@
 			files = (
 				C12D702B22A848E000A8A8CC /* SearchViewController.swift in Sources */,
 				C12D702922A838D400A8A8CC /* TitleTableViewCell.swift in Sources */,
+				F48EB4D022A830BE0060AD2A /* WebServiceHandler.swift in Sources */,
 				F443D5A822A7D8D300D1675D /* ViewController.swift in Sources */,
 				F443D5A622A7D8D300D1675D /* AppDelegate.swift in Sources */,
+				F44E600722A8333100B60AD0 /* ApiLinks.swift in Sources */,
 				F443D5AE22A7D8D300D1675D /* NewsArchives.xcdatamodeld in Sources */,
+				F44E600A22A8339F00B60AD0 /* Issue.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
