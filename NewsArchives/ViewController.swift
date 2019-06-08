@@ -28,7 +28,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
+        return UITableViewAutomaticDimension
     }
 
     override func viewDidLoad() {
@@ -36,7 +36,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         // Do any additional setup after loading the view, typically from a nib.
         
         self.titleTableview.estimatedRowHeight = 140
-        self.titleTableview.rowHeight = UITableView.automaticDimension
+        self.titleTableview.rowHeight = UITableViewAutomaticDimension
         self.titleTableview.backgroundColor = UIColor.black;
 
         updateDeviceToken()

@@ -29,14 +29,14 @@ class SearchViewController: UIViewController, UITableViewDelegate,  UITableViewD
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
+        return UITableViewAutomaticDimension
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         self.searchTableview.estimatedRowHeight = 140
-        self.searchTableview.rowHeight = UITableView.automaticDimension
+        self.searchTableview.rowHeight = UITableViewAutomaticDimension
         
         self.searchTableview.backgroundColor = UIColor.black;
     }
