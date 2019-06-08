@@ -87,7 +87,7 @@
                                             <outlet property="publisher" destination="X0t-QW-cfM" id="iau-HC-ejW"/>
                                             <outlet property="region" destination="qpT-4o-yBV" id="uuf-g6-dKM"/>
                                             <outlet property="title" destination="9Jq-aH-2no" id="lYb-TW-gQ6"/>
-                                            <segue destination="C1O-C8-3cz" kind="show" id="s51-sV-Cvx"/>
+                                            <segue destination="C1O-C8-3cz" kind="show" identifier="AgencyDetails" id="s51-sV-Cvx"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

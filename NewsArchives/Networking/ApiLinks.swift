@@ -13,10 +13,10 @@ class ApiLinks : NSObject {
     var dev = Bool()
     var httpPart = "https://"
     
-    var localHost = "chroniclingamerica.loc.gov/lccn/sn86054029.json"
+    var localHost = "chroniclingamerica.loc.gov"
     
     
-    var apiExtension = ""
+    var apiExtension = "search/titles/results/?city=&rows=20&terms=&language=&lccn=&material_type=&year1=1690&year2=2019&labor=&county=&state=&frequency=&ethnicity=&page=7765&sort=relevance&format=json"
     var separater = "/"
     var host = String()
     

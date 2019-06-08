@@ -12,17 +12,21 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
    
     
     @IBOutlet weak var titleTableview: UITableView!
+    var agencyArray:[Agency] = []
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return self.agencyArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         // create a new cell if needed or reuse an old one
-        let cell:UITableViewCell = self.titleTableview.dequeueReusableCell(withIdentifier: "TitleCell") as UITableViewCell!
+        let cell:TitleTableViewCell = self.titleTableview.dequeueReusableCell(withIdentifier: "TitleCell") as! TitleTableViewCell!
         
-        // set the text from the data model
+        cell.title.text = agencyArray[indexPath.row].title;
+        cell.language.text = agencyArray[indexPath.row].language[0];
+        cell.publisher.text = agencyArray[indexPath.row].publisher;
+        cell.region.text = agencyArray[indexPath.row].city[0];
         
         return cell
     }
@@ -49,7 +53,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             {
                 response in
                 
-                print(response);
+                guard let agncyArr = response as? [Agency] else{
+                    return;
+                }
+                
+                self.agencyArray = agncyArr;
+                self.titleTableview.reloadData()
         })
 
     }
@@ -59,6 +68,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         // Dispose of any resources that can be recreated.
     }
 
-
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if(segue.identifier == "AgencyDetails")
+        {
+            let vc:SearchViewController = segue.destination as! SearchViewController
+            vc.agencyArr = [["Title":self.agencyArray[0].title],["City":self.agencyArray[0].city[0]]] as! [[String : String]];
+        }
+    }
 }
 

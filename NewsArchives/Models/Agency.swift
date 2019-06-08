@@ -12,16 +12,16 @@ class Agency {
     
     var start_year: Int?
     var essay: [String?]
-//    var publisher: String?
+    var publisher: String?
 //    var county: [String?]
 //    var edition: String?
 //    var frequency: String?
 //    var url: String?
 //    var id: String?
 //    var subject: [String?]
-//    var city: [String?]
-//    var language: [String?]
-//    var title: String?
+    var city: [String?]
+    var language: [String?]
+    var title: String?
 //    var holding_type: [String?]
 //    var end_year: Int?
 //    var alt_title: [String?]
@@ -46,9 +46,14 @@ class Agency {
 //        self.specialaddon = specialaddon
 //
 //    }
-    init(start_year: Int?,essay: [String?]){
+    init(start_year: Int?,essay: [String?],title: String?,publisher: String?,language: [String?],city: [String?]){
         self.start_year = start_year;
         self.essay = essay;
+        self.publisher = publisher;
+        self.language = language;
+        self.city = city;
+        self.title = title;
+
     }
     
 }

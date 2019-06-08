@@ -29,23 +29,44 @@ class WebServiceHandler : NSObject {
         return "network failed"
     }
     
-    func fetchDataFromWebServicePost<T>(_ parameters: Dictionary<String , AnyObject>, closure:@escaping (_ response: T) -> Void) {
+    func fetchDataFromWebServicePost(_ parameters: Dictionary<String , AnyObject>, closure:@escaping (_ completion: Any) -> Void) {
         
         let url = getWebServiceUrl()
         Alamofire.request(url, method: .get, parameters: nil, headers: nil).responseJSON { (response:DataResponse<Any>) in
-            print(response.request)  // original URL request
-            print(response.response) // URL response
-            //                print(response.data)     // server data
-            print("Result",response.result)   // result of response serialization
-            print("parameters = \(parameters)")
+//            print(response.request)  // original URL request
+//            print(response.response) // URL response
+//            //                print(response.data)     // server data
+//            print("Result",response.result)   // result of response serialization
+//            print("parameters = \(parameters)")
             if let JSON = response.result.value {
-                print("JSON: \(JSON)")
+                //                print("JSON: \(JSON)")
             }
             //TODO:Dismiss HUD
             switch response.result {
             case .success(_):
                 if response.response?.statusCode == 200 || response.response?.statusCode == 201 {
-                    // map multiple objects
+                    
+                    
+                    if let dictionary = response.result.value as? [String: Any] {
+                        
+                        if let agencyDict = dictionary["items"] as? [[String:Any]] {
+                            var agencyArray = [Agency]()
+                            
+                            for agencyObj in agencyDict
+                            {
+                                let agency:Agency = Agency.init(start_year: agencyObj["start_year"] as? Int, essay: agencyObj["essay"] as? [String] ?? [], title: agencyObj["title"] as? String, publisher: agencyObj["publisher"] as? String, language: agencyObj["language"] as? [String] ?? [], city: agencyObj["city"] as? [String] ?? [])
+                                agencyArray.append(agency)
+                            }
+                            print(agencyArray.count)
+                            
+                            closure(agencyArray)
+
+                        }
+                        
+                        
+                    }
+                    
+                    
                     if self.processSingleRecord() == true {
                         //Map single object
                     }

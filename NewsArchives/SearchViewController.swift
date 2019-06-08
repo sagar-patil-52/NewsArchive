@@ -12,9 +12,9 @@ class SearchViewController: UIViewController, UITableViewDelegate,  UITableViewD
     
     @IBOutlet weak var searchTableview: UITableView!
 
-    
+    var agencyArr:[[String:String]] = [[:]]
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return agencyArr.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -22,7 +22,7 @@ class SearchViewController: UIViewController, UITableViewDelegate,  UITableViewD
         // create a new cell if needed or reuse an old one
         let cell:UITableViewCell = self.searchTableview.dequeueReusableCell(withIdentifier: "SearchCell") as UITableViewCell!
         
-        cell.textLabel?.text = "key : value"
+        cell.textLabel?.text = agencyArr[indexPath.row].description
         // set the text from the data model
         
         return cell
