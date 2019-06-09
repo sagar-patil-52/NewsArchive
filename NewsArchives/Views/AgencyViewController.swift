@@ -2,18 +2,32 @@
 //  AgencyViewController.swift
 //  NewsArchives
 //
-//  Created by Sagar  Patil on 05/06/19.
+//  Created by Shaunak Jagtap on 05/06/19.
 //  Copyright © 2019 Shaunak Jagtap. All rights reserved.
 //
 
 import UIKit
 
 class AgencyViewController: UIViewController, UITableViewDelegate, UITableViewDataSource,UIScrollViewDelegate {
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
     
     @IBOutlet weak var titleTableview: UITableView!
     var viewModel : AgencyViewModel = AgencyViewModel()
     let spinner = UIActivityIndicatorView(activityIndicatorStyle: .white)
     
+    @IBAction func segmentChanges(_ sender: Any) {
+        viewModel.agencyArray = []
+        if segmentedControl.selectedSegmentIndex == 1 {
+            viewModel.agencyArray = StorageHandler.shared.getStoredAgencies()
+            handelResult(response: viewModel.agencyArray)
+        }
+        else {
+            viewModel.fetchAgencies(closure: { (response) in
+                self.handelResult(response: response)
+            })
+        }
+        titleTableview.reloadData();
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -33,6 +47,27 @@ class AgencyViewController: UIViewController, UITableViewDelegate, UITableViewDa
         // Dispose of any resources that can be recreated.
     }
     
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        if segmentedControl.selectedSegmentIndex == 1 {
+            return true
+        }
+        else{
+            return false
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let action = UITableViewRowAction(style: .destructive, title: "Delete") { (_, index) in
+            // delete model object at the index
+            StorageHandler.shared.deleteAgency(title: self.viewModel.agencyArray[indexPath.row].title ?? "")
+            self.viewModel.agencyArray.remove(at: index.row)
+            self.titleTableview.beginUpdates()
+            self.titleTableview.deleteRows(at: [index], with: .automatic)
+            self.titleTableview.endUpdates()
+            
+        }
+        return [action]
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.agencyArray.count

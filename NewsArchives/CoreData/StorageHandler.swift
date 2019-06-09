@@ -2,7 +2,7 @@
 //  StorageHandler.swift
 //  NewsArchives
 //
-//  Created by Sagar  Patil on 09/06/19.
+//  Created by Shaunak Jagtap on 09/06/19.
 //  Copyright © 2019 Shaunak Jagtap. All rights reserved.
 //
 
@@ -70,7 +70,7 @@ class StorageHandler {
         
         newUser.setValue(agency.title, forKey: "title")
         newUser.setValue(agency.publisher, forKey: "publisher")
-        newUser.setValue(agency.city[0], forKey: "region")
+        newUser.setValue(agency.city?[0], forKey: "region")
         
         do {
             try context.save()
@@ -94,21 +94,20 @@ class StorageHandler {
             
             for data in result as! [NSManagedObject] {
                 
-                
-                print("------------------ getting values-------------------------------")
-                
+        
                 let  title = data.value(forKey: "title") as! String
                 print(title)
                 let publisher = data.value(forKey: "publisher") as! String
                 print(publisher)
-                let language = data.value(forKey: "language") as! String
+                var language = ""
+                if data.value(forKey: "language") != nil {
+                    language = data.value(forKey: "language") as! String
+                }
                 let region = data.value(forKey: "region") as! String
-                let agency = Agency.init(start_year: 0, essay:[""], title: title, publisher: publisher, language: [language], city: [region])
+                let agency = Agency.init(start_year: 0, essay:"", title: title, publisher: publisher, language: [language], city: [region])
                 
                 agencyArr.append(agency)
-                
-                print("------------------ getting values-------------------------------")
-
+    
             }
             
             return agencyArr

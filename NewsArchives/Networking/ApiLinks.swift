@@ -2,7 +2,7 @@
 //  AppLinks.swift
 //  NewsArchives
 //
-//  Created by Sagar  Patil on 05/06/19.
+//  Created by Shaunak Jagtap on 05/06/19.
 //  Copyright © 2019 Shaunak Jagtap. All rights reserved.
 //
 

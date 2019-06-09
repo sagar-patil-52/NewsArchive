@@ -22,7 +22,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="VKB-1y-ZRg">
-                                <rect key="frame" x="16" y="64" width="343" height="603"/>
+                                <rect key="frame" x="16" y="112" width="343" height="555"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="separatorColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
@@ -96,23 +96,37 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="C3P-Tm-tUL"/>
                                 </connections>
                             </tableView>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="JeG-h3-Gqq">
+                                <rect key="frame" x="26" y="74" width="323" height="29"/>
+                                <segments>
+                                    <segment title="Agencies"/>
+                                    <segment title="Favourite"/>
+                                </segments>
+                                <connections>
+                                    <action selector="segmentChanges:" destination="BYZ-38-t0r" eventType="valueChanged" id="Vng-f9-99a"/>
+                                </connections>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                         <constraints>
                             <constraint firstItem="VKB-1y-ZRg" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="6bg-eU-J4x"/>
                             <constraint firstAttribute="trailingMargin" secondItem="VKB-1y-ZRg" secondAttribute="trailing" id="GCp-5M-cPS"/>
+                            <constraint firstItem="JeG-h3-Gqq" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="10" id="Jd9-xE-Bl4"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="JeG-h3-Gqq" secondAttribute="trailing" constant="10" id="LNd-qX-GZD"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="VKB-1y-ZRg" secondAttribute="bottom" id="akP-q1-KIF"/>
-                            <constraint firstItem="VKB-1y-ZRg" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="sge-J2-sbV"/>
+                            <constraint firstItem="JeG-h3-Gqq" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="10" id="oiF-S5-Lpv"/>
+                            <constraint firstItem="VKB-1y-ZRg" firstAttribute="top" secondItem="JeG-h3-Gqq" secondAttribute="bottom" constant="10" id="wfs-TK-2fw"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="cIs-WI-S8v"/>
                     <connections>
+                        <outlet property="segmentedControl" destination="JeG-h3-Gqq" id="1ax-3M-bsu"/>
                         <outlet property="titleTableview" destination="VKB-1y-ZRg" id="C16-g0-mAF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="958" y="107"/>
+            <point key="canvasLocation" x="957.60000000000002" y="106.59670164917542"/>
         </scene>
         <!--Search View Controller-->
         <scene sceneID="rpQ-Rw-J91">
