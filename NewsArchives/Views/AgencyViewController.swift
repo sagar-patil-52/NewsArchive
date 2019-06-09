@@ -41,12 +41,12 @@ class AgencyViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         // create a new cell if needed or reuse an old one
-        let cell:TitleTableViewCell = titleTableview.dequeueReusableCell(withIdentifier: "TitleCell") as! TitleTableViewCell!
+        let cell:TitleTableViewCell = titleTableview.dequeueReusableCell(withIdentifier: "TitleCell") as! TitleTableViewCell
         
         cell.title.text = viewModel.agencyArray[indexPath.row].title;
-        cell.language.text = viewModel.agencyArray[indexPath.row].language[0];
+        cell.language.text = viewModel.agencyArray[indexPath.row].language?[0];
         cell.publisher.text = viewModel.agencyArray[indexPath.row].publisher;
-        cell.region.text = viewModel.agencyArray[indexPath.row].city[0];
+        cell.region.text = viewModel.agencyArray[indexPath.row].city?[0];
         
         return cell
     }
