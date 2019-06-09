@@ -13,7 +13,7 @@ class AgencyViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var titleTableview: UITableView!
     var viewModel : AgencyViewModel = AgencyViewModel()
     let spinner = UIActivityIndicatorView(activityIndicatorStyle: .white)
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -116,6 +116,9 @@ class AgencyViewController: UIViewController, UITableViewDelegate, UITableViewDa
             else {
                 return
         }
+        
+        StorageHandler.shared.storeData(agency: agency)
+        StorageHandler.shared.getStoredAgencies()
         
         detailViewController.agency = agency;
     }
