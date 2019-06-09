@@ -22,17 +22,14 @@ class WebServiceHandler : NSObject {
         return false
     }
     
-    func getWebServiceUrl() -> String{
-        return ApiLinks().deviceTokenLink();
-    }
+
     func DisplayNetworkAvailabilityMessage()-> String{
         return "network failed"
     }
     
-    func fetchDataFromWebServicePost(_ parameters: Dictionary<String , AnyObject>, closure:@escaping (_ completion: Any) -> Void) {
+    func fetchDataFromWebService(url:String,method: HTTPMethod,_ parameters: Dictionary<String , AnyObject>, closure:@escaping (_ completion: Any) -> Void) {
         
-        let url = getWebServiceUrl()
-        Alamofire.request(url, method: .get, parameters: nil, headers: nil).responseJSON { (response:DataResponse<Any>) in
+        Alamofire.request(url, method: method, parameters: nil, headers: nil).responseJSON { (response:DataResponse<Any>) in
 //            print(response.request)  // original URL request
 //            print(response.response) // URL response
 //            //                print(response.data)     // server data
@@ -48,28 +45,14 @@ class WebServiceHandler : NSObject {
                     
                     
                     if let dictionary = response.result.value as? [String: Any] {
-                        
-                        if let agencyDict = dictionary["items"] as? [[String:Any]] {
-                            var agencyArray = [Agency]()
-                            
-                            for agencyObj in agencyDict
-                            {
-                                let agency:Agency = Agency.init(start_year: agencyObj["start_year"] as? Int, essay: agencyObj["essay"] as? [String] ?? [], title: agencyObj["title"] as? String, publisher: agencyObj["publisher"] as? String, language: agencyObj["language"] as? [String] ?? [], city: agencyObj["city"] as? [String] ?? [])
-                                agencyArray.append(agency)
+                            DispatchQueue.main.async {
+                                closure(dictionary)
                             }
-                            print(agencyArray.count)
-                            
-                            closure(agencyArray)
-
-                        }
-                        
-                        
                     }
                     
-                    
-                    if self.processSingleRecord() == true {
-                        //Map single object
-                    }
+//                    if self.processSingleRecord() == true {
+//                        //Map single object
+//                    }
                 }
                 else if response.response?.statusCode == 0{
                     
@@ -79,7 +62,9 @@ class WebServiceHandler : NSObject {
                     }
                 }
             case .failure(let error):
-                debugPrint("getEvents error: \(error)")
+                DispatchQueue.main.async {
+                    closure(error)
+                }
                 //TODO:Dismiss HUD
             }
             }.responseString { response in

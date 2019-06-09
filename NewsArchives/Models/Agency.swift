@@ -46,6 +46,16 @@ class Agency {
 //        self.specialaddon = specialaddon
 //
 //    }
+    
+    init(json:[String: Any]) {
+        start_year = json["start_year"] as? Int
+        essay = json["essay"] as? [String] ?? [""]
+        title = json["title"] as? String
+        publisher = json["publisher"] as? String
+        language = json["language"] as? [String] ?? [""]
+        city = json["city"] as? [String] ?? [""]
+    }
+    
     init(start_year: Int?,essay: [String?],title: String?,publisher: String?,language: [String?],city: [String?]){
         self.start_year = start_year;
         self.essay = essay;
