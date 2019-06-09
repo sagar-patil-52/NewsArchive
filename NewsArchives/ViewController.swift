@@ -31,6 +31,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        performSegue(withIdentifier: "AgencyDetails", sender: self.agencyArray[indexPath.row])
+    }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
     }
@@ -72,7 +77,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         if(segue.identifier == "AgencyDetails")
         {
             let vc:SearchViewController = segue.destination as! SearchViewController
-            vc.agencyArr = [["Title":self.agencyArray[0].title],["City":self.agencyArray[0].city[0]]] as! [[String : String]];
+            let agency:Agency = (sender as? Agency)!
+            vc.agencyArr = [["Title":agency.title],["City":agency.city[0]]] as! [[String : String]];
         }
     }
 }
